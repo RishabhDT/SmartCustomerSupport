@@ -1,0 +1,649 @@
+{
+  "intents": [
+    {
+      "intent": "ProductInfo",
+      "examples": [
+        {
+          "text": "How do I access the settings"
+        },
+        {
+          "text": "How do i set the time"
+        },
+        {
+          "text": "How to start heater"
+        },
+        {
+          "text": "How do I start the heater"
+        },
+        {
+          "text": "How to install battery"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "floorGang",
+      "examples": [
+        {
+          "text": "floorgang?"
+        },
+        {
+          "text": "are you floor gang?"
+        },
+        {
+          "text": "floorgang"
+        }
+      ],
+      "description": "easterEgg"
+    },
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "hello"
+        },
+        {
+          "text": "good morning"
+        },
+        {
+          "text": "what's up"
+        },
+        {
+          "text": "gm"
+        },
+        {
+          "text": "hey"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "good afternoon"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "goodnight",
+      "examples": [
+        {
+          "text": "night"
+        },
+        {
+          "text": "gn"
+        },
+        {
+          "text": "goodnight"
+        },
+        {
+          "text": "good night"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ceilingGang",
+      "examples": [
+        {
+          "text": "ceiling gang?"
+        },
+        {
+          "text": "are you ceiling gang?"
+        },
+        {
+          "text": "ceiling gang"
+        }
+      ],
+      "description": "easter egg"
+    },
+    {
+      "intent": "bye",
+      "examples": [
+        {
+          "text": "goodbye"
+        },
+        {
+          "text": "good bye"
+        },
+        {
+          "text": "bye"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Thanks",
+      "examples": [
+        {
+          "text": "Thank you"
+        },
+        {
+          "text": "Thanks"
+        },
+        {
+          "text": "arigato"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "location",
+      "examples": [
+        {
+          "text": "where are you located"
+        },
+        {
+          "text": "how can i get you"
+        },
+        {
+          "text": "where is your store at"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Hours",
+      "examples": [
+        {
+          "text": "are you open right now"
+        },
+        {
+          "text": "what are the hours of the store"
+        },
+        {
+          "text": "can i inquire about the timings"
+        },
+        {
+          "text": "At what time you are open"
+        },
+        {
+          "text": "what are the timings of the store"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Skillz",
+      "examples": [
+        {
+          "text": "What can you do?"
+        },
+        {
+          "text": "what can you do"
+        },
+        {
+          "text": "what kind of questions can you answer"
+        },
+        {
+          "text": "How can you help me?"
+        },
+        {
+          "text": "how can you help me"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "location",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "location",
+          "synonyms": [
+            "location",
+            "where",
+            "store",
+            "place"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "good morning",
+          "synonyms": [
+            "gm",
+            "gdmrng",
+            "Ohaio",
+            "morning",
+            "mornin",
+            "morn"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "hours",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "hour",
+          "synonyms": [
+            "open",
+            "timings",
+            "hours",
+            "timing"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "webhooks": [
+    {
+      "url": "https://eu-gb.functions.cloud.ibm.com/api/v1/web/rishabhdixitjp%40gmail.com_dev/default/Mah%20action.json",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "We cant find the answer to your query please try again"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1590259772410",
+      "conditions": "anything_else",
+      "dialog_node": "response_2_1590259789891",
+      "previous_sibling": "response_1_1590259787136"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "\"<?$webhook_result_1.passages[0].passage_text?>\""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1590259772410",
+      "conditions": "$webhook_result_1",
+      "dialog_node": "response_1_1590259787136"
+    },
+    {
+      "type": "standard",
+      "title": "location1",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Our store is at mumbai"
+              },
+              {
+                "text": " we are located at mumbai"
+              },
+              {
+                "text": "you can find us at mumbai"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1589114714847",
+      "conditions": "@location",
+      "dialog_node": "node_4_1589114955728"
+    },
+    {
+      "type": "standard",
+      "title": "Information",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "input": "<?input.text?>"
+          },
+          "result_variable": "webhook_result_1"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#ProductInfo",
+      "dialog_node": "node_10_1590259772410",
+      "previous_sibling": "node_8_1590331960359"
+    },
+    {
+      "type": "standard",
+      "title": "goodbye",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "hope to see you again"
+              },
+              {
+                "text": "byeee"
+              },
+              {
+                "text": "goodbye(:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#bye",
+      "dialog_node": "node_4_1589045825789",
+      "previous_sibling": "node_1_1589047042005"
+    },
+    {
+      "type": "standard",
+      "title": "goodnight",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "good night"
+              },
+              {
+                "text": "sleep tight don't let the bed bugs bite"
+              },
+              {
+                "text": "bye"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#goodnight",
+      "dialog_node": "node_4_1589047356062",
+      "previous_sibling": "node_1_1589114070244"
+    },
+    {
+      "type": "standard",
+      "title": "Floorgang",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "floor gang ooh floor gang aaah"
+              },
+              {
+                "text": "floor gang for life"
+              },
+              {
+                "text": "i live for floor gang i die for floor gang"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#floorGang",
+      "dialog_node": "node_3_1590332477456",
+      "previous_sibling": "node_9_1590332549106"
+    },
+    {
+      "type": "standard",
+      "title": "CeilingGang",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ceiling gang?.........criiiiiingggeeee"
+              },
+              {
+                "text": "dont speak that name in front of me please"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#ceilingGang",
+      "dialog_node": "node_9_1590332549106",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_6_1588869056684",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "location",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "our store is located at mumbai"
+              },
+              {
+                "text": "we are located at mumbai"
+              },
+              {
+                "text": "you can look us at Mumbai in EastAndheri"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_4_1589114955728"
+      },
+      "conditions": "#location",
+      "dialog_node": "node_3_1589114714847",
+      "previous_sibling": "node_10_1590259772410"
+    },
+    {
+      "type": "standard",
+      "title": "hours",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "we are open from monday to friday from 9 am to 5 pm"
+              },
+              {
+                "text": "The store  opens at 9 am and closes at 5pm except saturday and sunday when the store is off"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#Hours || @hours",
+      "dialog_node": "node_1_1589114070244",
+      "previous_sibling": "node_3_1589114714847"
+    },
+    {
+      "type": "standard",
+      "title": "greetings",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello,How can I help you"
+              },
+              {
+                "text": "Hey"
+              },
+              {
+                "text": "TALOS at your service(;"
+              },
+              {
+                "text": "Good morning, How can I help you"
+              },
+              {
+                "text": "I am TALOS your personal assistant(:"
+              },
+              {
+                "text": "Ask me anything"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#greetings",
+      "dialog_node": "node_6_1588869056684",
+      "previous_sibling": "node_4_1589045825789"
+    },
+    {
+      "type": "standard",
+      "title": "skillz",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I can:\ntell you the working hours of the store\nguide you to the location of the store\ncan answer basic technical questions such as:\nhow do I turn on the heater"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Skillz",
+      "dialog_node": "node_8_1590331960359",
+      "previous_sibling": "node_3_1590332477456"
+    },
+    {
+      "type": "standard",
+      "title": "thankyou",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "happy to help you(:"
+              },
+              {
+                "text": "Glad I was able to help you"
+              },
+              {
+                "text": "your welcome"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#Thanks",
+      "dialog_node": "node_1_1589047042005",
+      "previous_sibling": "node_4_1589047356062"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
